@@ -21,7 +21,7 @@ steps:
     
 - task: Maven@3
   inputs:
-    mavenPomFile: '$(Build.SourcesDirectory)/publications/release/pom-default.xml'
+    mavenPomFile: '$(Build.SourcesDirectory)/app/build/publications/release/pom-default.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
