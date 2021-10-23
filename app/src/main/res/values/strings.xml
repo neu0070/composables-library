@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Composables</string>
+    <string name="label_text">Label</string>
+    <string name="button_ok">OK</string>
+    <string name="dialog_title_error">Error</string>
+    <string name="title_text">Title</string>
+    <string name="subtitle_text">Subtitle text</string>
+</resources>
