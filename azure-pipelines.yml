@@ -30,6 +30,6 @@ steps:
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(build.artifactstagingdirectory)'
-    artifact: 'composables-pom-xml'
+    artifact: 'composables-pom.xml'
     publishLocation: 'pipeline'
   displayName: 'Publish artifacts'
