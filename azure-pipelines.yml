@@ -19,10 +19,10 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'clean generatePomFileForReleasePublication'
     
-- task: Maven@3
+- task: CopyFiles@2
   inputs:
-    mavenPomFile: '$(Build.SourcesDirectory)/app/build/publications/release/pom-default.xml'
-    mavenOptions: '-Xmx3072m'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    goals: 'package'
+    SourceFolder: '$(Build.SourcesDirectory)/app/build/publications/release/pom-default.xml'
+    Contents: 'pom-default.xml'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    CleanTargetFolder: true
+  displayName: 'Copy pom.xml'
