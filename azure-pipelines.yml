@@ -22,7 +22,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/app/build/publications/release/pom-default.xml'
-    Contents: 'pom-default.xml'
+    Contents: '**/*.xml'
     TargetFolder: '$(build.artifactstagingdirectory)'
     CleanTargetFolder: true
   displayName: 'Copy pom.xml'
