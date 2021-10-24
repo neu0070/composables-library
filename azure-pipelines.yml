@@ -21,8 +21,8 @@ steps:
     
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/app/build/publications/release/pom-default.xml'
-    Contents: '**/*.xml'
+    SourceFolder: '$(Build.SourcesDirectory)/app/build/publications/release'
+    Contents: 'pom-default.xml'
     TargetFolder: '$(build.artifactstagingdirectory)'
     CleanTargetFolder: true
   displayName: 'Copy pom.xml'
@@ -30,6 +30,6 @@ steps:
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(build.artifactstagingdirectory)'
-    artifact: 'composables-pom.xml'
+    artifact: 'composables-pom'
     publishLocation: 'pipeline'
   displayName: 'Publish artifacts'
