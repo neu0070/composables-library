@@ -19,13 +19,17 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'clean generatePomFileForReleasePublication'
     
-- task: Maven@3
+- task: CopyFiles@2
   inputs:
-    mavenPomFile: '$(Build.SourcesDirectory)/app/build/publications/release/pom-default.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    goals: 'package'
+    SourceFolder: '$(Build.SourcesDirectory)/app/build/publications/release'
+    Contents: 'pom-default.xml'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    CleanTargetFolder: true
+  displayName: 'Copy pom.xml'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(build.artifactstagingdirectory)'
+    artifact: 'composables-pom'
+    publishLocation: 'pipeline'
+  displayName: 'Publish artifacts'
