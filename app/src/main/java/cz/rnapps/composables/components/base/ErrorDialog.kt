@@ -13,28 +13,30 @@ import cz.rnapps.composables.utils.error.IAppError
 
 @Composable
 fun ErrorDialog(
-    error: IAppError,
+    error: IAppError?,
     onDialogDismiss: () -> Unit
 ) {
-    AlertDialog(
-        onDismissRequest = onDialogDismiss,
-        confirmButton = {
-            Button(onClick = onDialogDismiss) {
-                Text(text = stringResource(R.string.button_ok))
-            }
-        },
-        title = {
-            Text(text = stringResource(R.string.dialog_title_error))
-        },
-        text = {
-            when {
-                error.errorMessageResId != null -> {
-                    Text(text = stringResource(id = error.errorMessageResId))
+    if(error != null) {
+        AlertDialog(
+            onDismissRequest = onDialogDismiss,
+            confirmButton = {
+                Button(onClick = onDialogDismiss) {
+                    Text(text = stringResource(R.string.button_ok))
                 }
-                error.throwable != null -> {
-                    Text(text = error.throwable.toString())
+            },
+            title = {
+                Text(text = stringResource(R.string.dialog_title_error))
+            },
+            text = {
+                when {
+                    error.errorMessageResId != null -> {
+                        Text(text = stringResource(id = error.errorMessageResId))
+                    }
+                    error.throwable != null -> {
+                        Text(text = error.throwable.toString())
+                    }
                 }
-            }
-        }, modifier = Modifier.padding(horizontal = 8.dp)
-    )
+            }, modifier = Modifier.padding(horizontal = 8.dp)
+        )
+    }
 }
